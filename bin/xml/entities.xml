@@ -6,33 +6,32 @@
 
 	<stylesheet>
 		<![CDATA[
+			/* Implemented */
+			#HoverCycle~.MinimapSprite {
+				color:#ffff00;
+			}
+			#HoverCycle~.SpriteSheetComponent {
+				//bitmapData:someHoverSpriteBmp;
+			}
+			#Pedestrian~#spriteSheet {
+				//bitmapData:somethingDefault;
+			}
 			
+			/* Not implemented yet */
 			.SpriteSheetComponent {
 				rotationSteps:8;
 			}
 			.MinimapSprite {
 				color:#ff0000;
 			}
-			
-			#HoverCycle~.MinimapSprite {
-				color:#ffff00;
-			}
-			
-			#HoverCycle~#spriteSheet {
-				bitmapData:someHoverSpriteBmp;
-			}
 			#hoverCycle~#spriteSheet {
 				bitmapData:someHoverSpriteBmp####;
 			}
 			#hoverCycle~.SpriteSheetComponent {
-				urlRef:url(filepath/someGalleryPath/####.jpg);
+				
 			}
 			#hoverCycle3~#spriteSheet {
 				bitmapData:OverwritesAbove####Token;
-			}
-			
-			#Pedestrian~#spriteSheet {
-				bitmapData:somethingDefault;
 			}
 			#goodGuy #1~#spriteSheet {
 				bitmapData:something1;
@@ -51,24 +50,26 @@
 		]]>
 	</stylesheet>
 	
-	<template id="RaycasterSprite">
+	<base id="RaycasterSprite">
 		<component class="spatial.Position3D" rules="spatial.Position"></component>
-		<!--<component class="rendering.RaycastableSprite"></component>-->
-	</template>
-	<template id="MinimapSprite">
+		<component class="rendering.RaycastableSprite"></component>
+	</base>
+	<base id="MinimapSprite">
 		<component class="rendering.MinimapSprite"></component>
-	</template>
-	<template id="BoundsVehicle" extends="RaycasterSprite">
+	</base>
+	<base id="BoundsVehicle" extends="RaycasterSprite">
 		<component class="spatial.Bounds3D" rules="spatial.Bounds"></component>
 		<component class="spatial.Rotation"></component>
-	</template>
+	</base>
 	
 
 	<template id="Bus" extends="BoundsVehicle" >
-		<component class="rendering.Render3DComponent"></component>
+		<!--<component class="rendering.Render3DComponent"></component>-->
+			<component class="rendering.SpriteSheetComponent" rules="rendering.IBitmapSource"  id="spriteSheet"  />
 	</template>
 	<template id="Car" extends="BoundsVehicle">
-		<component class="rendering.Render3DComponent"></component>
+		<!--<component class="rendering.Render3DComponent"></component>-->
+			<component class="rendering.SpriteSheetComponent" rules="rendering.IBitmapSource"  id="spriteSheet"  />
 	</template>
 	
 
@@ -82,9 +83,8 @@
 		<component class="rendering.SpriteSheetComponent" rules="rendering.IBitmapSource" id="spriteSheet" />
 	</template>
 	<template id="LiveBystander" extends="Bystander MinimapSprite">
-		<class>com.someGuy.entities.PlayerClass</class>
-		<component class="com.someGuy.components::HisAdditionalComponentHeDeveloped"></component>
-		<component class="com.someGuy.away3d.Away3DBlitObject" rules="rendering.IBitmapSource"  />
+		<component class="spatial.Position3D" rules="spatial.Position"></component>
+		<component class="spatial.Rotation"></component>
 	</template>
 	<template id="BystanderWaiting" extends="Bystander">
 		<component class="rendering.SpriteSheetAnimComponent" rules="rendering.IBitmapSource" id="spriteSheet" />
@@ -94,25 +94,23 @@
 		<component class="spatial.Radius" />
 		<component class="rendering.SpriteSheetAnimComponent" rules="rendering.IBitmapSource" id="spriteSheet" />
 	</template>
-
-	
 	
 	<random id="hoverCycle" useTemplate="HoverCycle" suffixCount="4"  />
 	<random id="bystander" useTemplate="Bystander" suffixCount="4" />
 	<random id="bus" useTemplate="Bus" suffixCount="4" />
-	<random id="goodGuy" useTemplate="BystanderWaiting">
-		<select id="1"></select>
-		<select id="2"></select>
-		<select id="3"></select>
-	</random>
-	<random id="spawnVehicle">
-		<select useRandom="hoverCycle"></select>
-		<select useRandom="bus"></select>
-	</random>
-	<random id="spawnPerson">
-		<select id="pedestrian" useTemplate="Pedestrian"></select>
-		<select id="bystanderWaiting" useTemplate="BystanderWaiting"></select>
-		<select useRandom="bystander"></select>
-	</random>
+	<select id="goodGuy" useTemplate="BystanderWaiting">
+		<option id="1"></option>
+		<option id="2"></option>
+		<option id="3"></option>
+	</select>
+	<select id="spawnVehicle">
+		<option useRandom="hoverCycle"></option>
+		<option useRandom="bus"></option>
+	</select>
+	<select id="spawnPerson">
+		<option id="pedestrian" useTemplate="Pedestrian"></option>
+		<option id="bystanderWaiting" useTemplate="BystanderWaiting"></option>
+		<option useRandom="bystander"></option>
+	</select>
 
 </things>

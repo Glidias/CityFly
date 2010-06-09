@@ -1,4 +1,4 @@
-Experiments with developing a modular game sequel/extension to an old raycasting city engine I did up long ago (a modification to Andre Michelle's raycaster http://lab.andre-michelle.com/raycaster-v3), using the Swft Framework with XML serialization and F*CSS styling support for entities and components.
+Experiments with developing a modular game sequel/extension to an old raycasting city engine I did up long ago (a modification to Andre Michelle's raycaster http://lab.andre-michelle.com/raycaster-v3), using the Swft Framework with XML serialization and F*CSS styling support for entities and components. (http://github.com/theflashbum/fcss)
 
 Currently nothing much yet but just the bare bones/organisation. Looking into hierachical hash grids, among other stuffs.
 
