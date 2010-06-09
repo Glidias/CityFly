@@ -1,0 +1,118 @@
+﻿<things>
+	<settings>
+		<entityClassPath></entityClassPath>
+		<componentClassPath>org.cityfly.components</componentClassPath>
+	</settings>
+
+	<stylesheet>
+		<![CDATA[
+			
+			.SpriteSheetComponent {
+				rotationSteps:8;
+			}
+			.MinimapSprite {
+				color:#ff0000;
+			}
+			
+			#HoverCycle~.MinimapSprite {
+				color:#ffff00;
+			}
+			
+			#HoverCycle~#spriteSheet {
+				bitmapData:someHoverSpriteBmp;
+			}
+			#hoverCycle~#spriteSheet {
+				bitmapData:someHoverSpriteBmp####;
+			}
+			#hoverCycle~.SpriteSheetComponent {
+				urlRef:url(filepath/someGalleryPath/####.jpg);
+			}
+			#hoverCycle3~#spriteSheet {
+				bitmapData:OverwritesAbove####Token;
+			}
+			
+			#Pedestrian~#spriteSheet {
+				bitmapData:somethingDefault;
+			}
+			#goodGuy #1~#spriteSheet {
+				bitmapData:something1;
+			}
+			#goodGuy #2~#spriteSheet {
+				bitmapData:something2;
+			}
+			#goodGuy #3~#spriteSheet {
+				bitmapData:something3;
+			}
+			
+			#LiveBystander~.HisAdditionalComponentHeDeveloped {
+				runAhead:true;
+			}
+			
+		]]>
+	</stylesheet>
+	
+	<template id="RaycasterSprite">
+		<component class="spatial.Position3D" rules="spatial.Position"></component>
+		<!--<component class="rendering.RaycastableSprite"></component>-->
+	</template>
+	<template id="MinimapSprite">
+		<component class="rendering.MinimapSprite"></component>
+	</template>
+	<template id="BoundsVehicle" extends="RaycasterSprite">
+		<component class="spatial.Bounds3D" rules="spatial.Bounds"></component>
+		<component class="spatial.Rotation"></component>
+	</template>
+	
+
+	<template id="Bus" extends="BoundsVehicle" >
+		<component class="rendering.Render3DComponent"></component>
+	</template>
+	<template id="Car" extends="BoundsVehicle">
+		<component class="rendering.Render3DComponent"></component>
+	</template>
+	
+
+	<template id="HoverCycle" extends="RaycasterSprite">
+		<component class="spatial.Rotation" />
+		<component class="spatial.Radius" />
+		<component class="rendering.SpriteSheetComponent" rules="rendering.IBitmapSource"  id="spriteSheet"  />
+	</template>
+	<template id="Bystander" extends="RaycasterSprite">
+		<component class="spatial.Radius" />
+		<component class="rendering.SpriteSheetComponent" rules="rendering.IBitmapSource" id="spriteSheet" />
+	</template>
+	<template id="LiveBystander" extends="Bystander MinimapSprite">
+		<class>com.someGuy.entities.PlayerClass</class>
+		<component class="com.someGuy.components::HisAdditionalComponentHeDeveloped"></component>
+		<component class="com.someGuy.away3d.Away3DBlitObject" rules="rendering.IBitmapSource"  />
+	</template>
+	<template id="BystanderWaiting" extends="Bystander">
+		<component class="rendering.SpriteSheetAnimComponent" rules="rendering.IBitmapSource" id="spriteSheet" />
+	</template>
+	<template id="Pedestrian" extends="RaycasterSprite">
+		<component class="spatial.Rotation" />
+		<component class="spatial.Radius" />
+		<component class="rendering.SpriteSheetAnimComponent" rules="rendering.IBitmapSource" id="spriteSheet" />
+	</template>
+
+	
+	
+	<random id="hoverCycle" useTemplate="HoverCycle" suffixCount="4"  />
+	<random id="bystander" useTemplate="Bystander" suffixCount="4" />
+	<random id="bus" useTemplate="Bus" suffixCount="4" />
+	<random id="goodGuy" useTemplate="BystanderWaiting">
+		<select id="1"></select>
+		<select id="2"></select>
+		<select id="3"></select>
+	</random>
+	<random id="spawnVehicle">
+		<select useRandom="hoverCycle"></select>
+		<select useRandom="bus"></select>
+	</random>
+	<random id="spawnPerson">
+		<select id="pedestrian" useTemplate="Pedestrian"></select>
+		<select id="bystanderWaiting" useTemplate="BystanderWaiting"></select>
+		<select useRandom="bystander"></select>
+	</random>
+
+</things>
