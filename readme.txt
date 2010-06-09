@@ -2,6 +2,8 @@ Experiments with developing a modular game sequel/extension to an old raycasting
 
 Currently nothing much yet but just the bare bones/organisation. Looking into hierachical hash grids, among other stuffs.
 
-Old stuff for viewing at: \bin\oldstuff
+Old stuff for viewing at: \bin\oldstuff\
 
-Main src files at: \org\cityfly
+Entity xml templates  and stylings at \bin\xml\entities.xml
+
+Main src files at: \org\cityfly\
