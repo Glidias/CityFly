@@ -7,7 +7,6 @@
 	import com.flashartofwar.fcss.stylesheets.FStyleSheet;
 	import flash.system.ApplicationDomain;
 	import flash.utils.Dictionary;
-	import org.cityfly.components.spatial.Rotation;
 	import org.robotlegs.core.IInjector;
 	import org.cityfly.serialization.*;
 	
