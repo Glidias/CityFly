@@ -332,7 +332,6 @@
 				var count:int = 0;
 				while (--i > 0) {
 					count++;
-					if (count > 3) continue;
 					var entityComp:IEntityComponent = entityInjector.getInstance( mappingsToSpawn[i].classz );
 					baseStyle = stylesToApply[i];
 					if (styleObj || baseStyle) {
