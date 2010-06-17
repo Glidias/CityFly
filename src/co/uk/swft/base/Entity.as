@@ -39,6 +39,7 @@ package co.uk.swft.base
 				_components.push(component);
 				component.onRegister();
 			}
+			
 		}
 		
 		public function unregisterComponent(component:IEntityComponent):void

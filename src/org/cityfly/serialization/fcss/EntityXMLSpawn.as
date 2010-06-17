@@ -7,7 +7,6 @@
 	import com.flashartofwar.fcss.stylesheets.FStyleSheet;
 	import flash.system.ApplicationDomain;
 	import flash.utils.Dictionary;
-	import org.cityfly.components.spatial.Rotation;
 	import org.robotlegs.core.IInjector;
 	import org.cityfly.serialization.*;
 	
@@ -194,7 +193,24 @@
 				var len:int = extendClasses.length;
 				for (var i:int = 0; i < len; i++) {
 					var childNode:XML = _idMap[ extendClasses[i] ];
-					if (childNode == null) throw new Error("Could not find node to extend from id:"+extendClasses[i] + " under "+node.toXMLString());
+					if (childNode == null) throw new Error("Could not find node to extend from id:" + extendClasses[i] + " under " + node.toXMLString());
+					
+					// check for id attributes being used and run id case if so to prevent id collisions
+					var idList:XMLList = node.*.(hasOwnProperty("@id"));
+					if (idList.length() > 0) {
+						var copyList:XMLList = childNode.children().copy();
+						var gotIdList:XMLList = copyList.(hasOwnProperty("@id"));
+						for each (var idNode:XML in idList) {
+							var delList:XMLList = gotIdList.(@id == idNode.@id);
+							var d:int = delList.length();
+							while (--d > -1) {
+								delete delList[d];
+							}
+						}
+						node.appendChild(copyList);
+						continue;
+					}
+					// else use direct extension
 					node.appendChild(childNode.children());
 				}
 				return true;
@@ -304,8 +320,16 @@
 				entity.mapComponents();
 				entityInjector.mapValue(String, id, "spawnId");
 				entityInjector.mapValue(IEntity, entity);
-				entityInjector.injectInto(entity);
 				
+				// comment off try/catch blocks when no longer needed
+				try {
+					entityInjector.injectInto(entity);
+				}
+				catch (err:Error) {
+					throw new Error("Failed entity injection: "+id + "\n"+err.message );
+				}
+				
+				// FOR REFERENCE ONLY:
 				/*  //duplicate from entity map above
 					var entity:IEntity = new entityClass();
 					var entityInjector:IInjector = _injector.createChild();
@@ -325,15 +349,23 @@
 				
 				var len:int = mappingsToSpawn.length;
 				for (var i:int = 1; i < len; i++) {
-					 mappingsToSpawn[i].setup(entityInjector);
+					mappingsToSpawn[i].setup(entityInjector);
 				}
 				
 				i = len;
 				var count:int = 0;
+				var entityComp:IEntityComponent;
 				while (--i > 0) {
 					count++;
-					if (count > 3) continue;
-					var entityComp:IEntityComponent = entityInjector.getInstance( mappingsToSpawn[i].classz );
+					
+					//comment off try/catch blocks when no longer needed
+					try {		
+						entityComp = entityInjector.getInstance( mappingsToSpawn[i].classz );
+					}
+					catch (err:Error) {
+						throw new Error("Failed component instance for spawned entity: "+id + "\n"+err.message );
+					}
+					
 					baseStyle = stylesToApply[i];
 					if (styleObj || baseStyle) {
 						styleObj = styleObj ?  baseStyle ?  mergeObjects(styleObj, baseStyle) : styleObj : baseStyle;

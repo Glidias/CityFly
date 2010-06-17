@@ -14,6 +14,7 @@
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
     <class path="src" />
+    <class path="cx-src" />
   </classpaths>
   <!-- Build options -->
   <build>
@@ -47,6 +48,8 @@
     <element path="lib\robotlegs-framework-v1.1.0.swc" />
     <element path="lib\robotlegs-utilities-LazyMediator.swc" />
     <element path="lib\signals-extension-SignalsCommandMap-v0.1.swc" />
+    <element path="src\andre_raycaster.swc" />
+    <element path="src\citylib.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>
@@ -73,7 +76,7 @@
     <!-- example: <hidden path="..." /> -->
   </hiddenPaths>
   <!-- Executed before build -->
-  <preBuildCommand />
+  <preBuildCommand>D:/CityFly/bin/CaXe.exe -st ax -ct as D:/CityFly/TestCaxe/cx-src D:/CityFly/src</preBuildCommand>
   <!-- Executed after build -->
   <postBuildCommand alwaysRun="False" />
   <!-- Other project options -->

@@ -1,6 +1,6 @@
-Experiments with developing a modular game sequel/extension to an old raycasting city engine I did up long ago (a modification to Andre Michelle's raycaster http://lab.andre-michelle.com/raycaster-v3), using the Swft Framework with XML serialization and F*CSS styling support for entities and components. (http://github.com/theflashbum/fcss)
+Experiments with developing a modular game sequel/extension to an old raycasting city engine I did up long ago (a modification to Andre Michelle's raycaster http://lab.andre-michelle.com/raycaster-v3), using the Swft Framework (http://github.com/mikecann/Swft)  with XML serialization and F*CSS styling support for entities and components. (http://wiki.github.com/Glidias/CityFly/xml-serialization-and-fcss-specifications) and Haxe support to run engine-related stuff and settings. (http://www.haxe.org)
 
-Currently nothing much yet but just the bare bones/organisation. Looking into hierachical hash grids, among other stuffs.
+Currently nothing much yet but just some coding tryouts with swft, bare bones & organisation. This repo is more to looking into hierachical hash grids, among other stuffs.
 
 Old stuff for viewing at: \bin\oldstuff\
 

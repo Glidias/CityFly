@@ -3,7 +3,7 @@
 	import co.uk.swft.base.Entity;
 	import co.uk.swft.core.IEntityComponent;
 	/**
-	 * Reflects spawn id.
+	 * ...
 	 * @author Glenn Ko
 	 */
 	public class SpawnedEntity extends Entity

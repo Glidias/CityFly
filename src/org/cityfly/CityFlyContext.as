@@ -1,6 +1,7 @@
 ﻿package org.cityfly 
 {
 	import co.uk.swft.base.GameContext;
+	import flash.display.Bitmap;
 	import flash.display.DisplayObjectContainer;
 	import org.cityfly.*;
 	import org.cityfly.components.*;
@@ -8,9 +9,15 @@
 	import org.cityfly.entity.*;
 	import org.cityfly.grid.*;
 	import org.cityfly.commands.*;
+	import org.cityfly.commands.tests.*;
 	import org.cityfly.serialization.*;
 	import org.cityfly.serialization.fcss.*;
 
+	import org.cityfly.view.raycasting.hbrc.*;
+	import org.cityfly.view.raycasting.andre.*;
+	import org.cityfly.entity.camera.Camera3DEntity;
+	
+	import org.cityfly.view.raycasting.andre.AndreRaycaster;
 	
 	/**
 	 * ...
@@ -26,16 +33,17 @@
 		
 		override public function startup():void
 		{
-			
-	
 			// Map core managers ...
 			// ....
+	
 			
-			// Start the ball rolling
-			//injector.instantiate(GameStartupCommand).execute();
-			
-			// Test Entity spawner
-			injector.instantiate(TestEntitySpawner).execute();
+			// Perform a test below..
+			//injector.instantiate(TestEntitySpawner).execute();
+			//injector.instantiate(TestAndreRaycaster).execute();
+				
+			// Or start the main game instead
+			injector.instantiate(GameStartupCommand).execute();
+
 			
 		}	
 		
