@@ -140,6 +140,34 @@ public static inline function ppAbs(val:Float):Float {
 	return val < 0 ? -val : val;
 }
 
-	
+/*
+ function floorLog2( n:uint):uint {
+  var pos:int = 0;
+  if (n >= 1<<16) { n >>= 16; pos += 16; }
+  if (n >= 1<< 8) { n >>=  8; pos +=  8; }
+  if (n >= 1<< 4) { n >>=  4; pos +=  4; }
+  if (n >= 1<< 2) { n >>=  2; pos +=  2; }
+  if (n >= 1<< 1) {           pos +=  1; }
+  return ((n == 0) ? (-1) : pos);
+}
+
+function isPower2(x:Number):Boolean {
+	return x != 0 && (x & (x - 1)) == 0; 
+}
+
+
+function log2(input:Number):Number{
+    if(input<=0){
+        return NaN;
+    }else if((input&(input-1))==0){
+        var a:int=0;
+        while(input>1){input>>=1; ++a;}
+        return a;
+    }else{
+        return Math.log(input)*Math.LOG2E;
+    }
+}
+
+*/
 	
 }
