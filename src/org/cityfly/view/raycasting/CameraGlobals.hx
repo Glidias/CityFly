@@ -5,6 +5,8 @@
 
 package org.cityfly.view.raycasting;
 
+//import org.cityfly.common.MATH;
+
 class CameraGlobals 
 {
 	// Enable camera roll (will produce extra render resolution dimensions)
@@ -13,9 +15,18 @@ class CameraGlobals
 	public static inline var MAX_ROLL:Float			= 0.33; //(ppPI/8)
 	public static inline var MAX_PITCH:Float  = 0.33;
 		
-	public static inline var CAMERA_RES_WIDE:Int		= 300;
-	public static inline var CAMERA_RES_HIGH:Int		= 240;
-		
+	public static inline var CAMERA_RES_WIDE:Int		= 800;
+	public static inline var CAMERA_RES_HIGH:Int		= 400;
+	
+	/*
+	public static inline var CAMERA_RES_WIDE_B2:Int		= 512;
+	public static inline var CAMERA_RES_HIGH_B2:Int		= 256;
+	public static inline var CAMERA_RES_WIDE_POW2:Int = MATH.ppLog2(CAMERA_RES_WIDE_B2);
+	public static inline var CAMERA_RES_HIGH_POW2:Int = MATH.ppLog2(CAMERA_RES_HIGH_B2);
+	public static inline var CAMERA_RES_WIDE_POW2_MINUS1:Int = CAMERA_RES_WIDE_POW2 -1;
+	public static inline var CAMERA_RES_HIGH_POW2_MINUS1:Int = CAMERA_RES_HIGH_POW2 -1;
+	*/
+	
 	public static inline var CAMERA_RENDER_WIDE:Int		= CAMERA_RES_WIDE;
 	public static inline var CAMERA_RENDER_HIGH:Int		= CAMERA_RES_HIGH;
 

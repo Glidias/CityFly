@@ -5,18 +5,19 @@
   <target-player>10.0.0</target-player>
   <compiler>
     <source-path append="true">
-      <path-element>C:\CityFly\src</path-element>
+      <path-element>C:\CityFly_Git\CityFly\src</path-element>
       <path-element>C:\Program Files\FlashDevelop3\Library\AS3\classes</path-element>
     </source-path>
     <library-path append="true">
-      <path-element>C:\CityFly\lib\as3-signals-v0.6.swc</path-element>
-      <path-element>C:\CityFly\lib\robotlegs-framework-v1.1.0.swc</path-element>
-      <path-element>C:\CityFly\lib\robotlegs-utilities-LazyMediator.swc</path-element>
-      <path-element>C:\CityFly\lib\signals-extension-SignalsCommandMap-v0.1.swc</path-element>
+      <path-element>C:\CityFly_Git\CityFly\lib\as3-signals-v0.6.swc</path-element>
+      <path-element>C:\CityFly_Git\CityFly\lib\robotlegs-framework-v1.1.0.swc</path-element>
+      <path-element>C:\CityFly_Git\CityFly\lib\robotlegs-utilities-LazyMediator.swc</path-element>
+      <path-element>C:\CityFly_Git\CityFly\lib\signals-extension-SignalsCommandMap-v0.1.swc</path-element>
+      <path-element>C:\CityFly_Git\CityFly\src\citylib.swc</path-element>
     </library-path>
   </compiler>
   <file-specs>
-    <path-element>C:\CityFly\src\org\cityfly\CityFly.as</path-element>
+    <path-element>C:\CityFly_Git\CityFly\src\org\cityfly\CityFly.as</path-element>
   </file-specs>
   <default-background-color>#FFFFFF</default-background-color>
   <default-frame-rate>30</default-frame-rate>

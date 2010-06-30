@@ -27,9 +27,10 @@ import org.cityfly.view.raycasting.CameraGlobals;
 
 // andre 
 import org.cityfly.view.raycasting.andre.AndreRaycaster;
+import org.cityfly.view.raycasting.andre.AndreRaycasterAlchemy;
 // half-baked ra
-import org.cityfly.view.raycasting.hbrc.HBRCGlobals;
-import org.cityfly.view.raycasting.hbrc.HBRCView;
+//import org.cityfly.view.raycasting.hbrc.HBRCGlobals;
+//import org.cityfly.view.raycasting.hbrc.HBRCView;
 
 
 class CityLib 

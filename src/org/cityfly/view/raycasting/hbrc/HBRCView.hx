@@ -4,11 +4,10 @@
  * @author David Mace
  *
  * - WHat's different about this raycaster is that it does per-floor-tile shading, and variable
- * support for floating storey blocks. 
+ * support for floating storey blocks.
  * 
  * -WIP port to Haxe-
- * If anyone is interested, could someone work on this? 
- *
+ * 
  * @author Glenn Ko
  */
 

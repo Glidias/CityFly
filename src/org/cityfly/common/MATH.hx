@@ -1,4 +1,4 @@
-﻿/**
+﻿﻿/**
  * ...
  * @author Glenn Ko
  */
@@ -60,6 +60,8 @@ public static inline var pp2PI:Float =		6.2831853071795864769252867665590;
 //
 public static inline var ppHalfPI:Float =	1.5707963267948966192313216916398;
 
+
+public static inline var LOG2E:Float = 1.442695040888963387;
 //
 //Square root of 2
 //
@@ -140,6 +142,16 @@ public static inline function ppAbs(val:Float):Float {
 	return val < 0 ? -val : val;
 }
 
+public static inline function ppLog2(input:Int):Int {
+	if((input&(input-1))==0){
+        var a:Int=0;
+        while(input>1){input>>=1; ++a;}
+        return a;
+    }else{
+        return Std.int( Math.log(input) * MATH.LOG2E );
+    }
+}
+
 /*
  function floorLog2( n:uint):uint {
   var pos:int = 0;
@@ -156,17 +168,6 @@ function isPower2(x:Number):Boolean {
 }
 
 
-function log2(input:Number):Number{
-    if(input<=0){
-        return NaN;
-    }else if((input&(input-1))==0){
-        var a:int=0;
-        while(input>1){input>>=1; ++a;}
-        return a;
-    }else{
-        return Math.log(input)*Math.LOG2E;
-    }
-}
 
 */
 	

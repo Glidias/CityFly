@@ -18,6 +18,7 @@
 	import org.cityfly.entity.camera.Camera3DEntity;
 	
 	import org.cityfly.view.raycasting.andre.AndreRaycaster;
+
 	
 	/**
 	 * ...
@@ -38,8 +39,12 @@
 	
 			
 			// Perform a test below..
+			TestEntitySpawner
+			TestAndreRaycaster
+			TestAndreRaycasterAlchemy
 			//injector.instantiate(TestEntitySpawner).execute();
 			//injector.instantiate(TestAndreRaycaster).execute();
+			injector.instantiate(TestAndreRaycasterAlchemy).execute();
 				
 			// Or start the main game instead
 			injector.instantiate(GameStartupCommand).execute();

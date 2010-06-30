@@ -1,4 +1,4 @@
-package org.cityfly.serialization.fcss
+﻿package org.cityfly.serialization.fcss
 {
 	import co.uk.swft.core.IEntity;
 	import co.uk.swft.core.IEntityComponent;
@@ -39,7 +39,7 @@ package org.cityfly.serialization.fcss
 
 	
 		
-		public static const DEFAULT_ENTITY_CLASS:String = "org.cityfly.serialization::SpawnedEntity"; //co.uk.swft.base::Entity
+		private static const DEFAULT_ENTITY_CLASS:String = "org.cityfly.serialization::SpawnedEntity"; //co.uk.swft.base::Entity
 		
 		public function EntityXMLSpawn(injector:IInjector) 
 		{

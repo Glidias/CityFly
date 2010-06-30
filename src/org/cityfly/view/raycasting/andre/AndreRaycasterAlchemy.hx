@@ -4,9 +4,7 @@
  * Ported over to Haxe:
  * 
  * Test with Andre Michelle's Casual Raycaster ported over to Haxe, using world/camera 
- * Haxe inline globals from CityFly to allow refactoring. There's not much 
- * performance boost here, but this will allows one to refactor different inline settings whenever
- * required without performance overhead.
+ * Haxe inline globals from CityFly to allow refactoring + writing to Alchemy memory.
  * 
  * @author Glenn Ko
  */
@@ -16,6 +14,10 @@ package org.cityfly.view.raycasting.andre;
 import flash.Error;
 import flash.geom.Point;
 import flash.geom.Rectangle;
+import flash.Memory;
+import flash.system.ApplicationDomain;
+import flash.utils.ByteArray;
+import flash.utils.Endian;
 
 import flash.display.Bitmap;
 import flash.display.BitmapData;
@@ -28,7 +30,7 @@ import org.cityfly.view.raycasting.WorldGlobals;
 import org.cityfly.view.raycasting.CameraGlobals;
 import org.cityfly.common.MATH;
 
-class AndreRaycaster extends BitmapData
+class AndreRaycasterAlchemy extends BitmapData
 {
 
 	public var x:Float;
@@ -43,11 +45,13 @@ class AndreRaycaster extends BitmapData
 		private var ifloor: BitmapData;
 		private var iwall: BitmapData;
 		
+				
 		public static inline var CAMERA_WIDE:Int = CameraGlobals.CAMERA_RES_WIDE;
 		public static inline var CAMERA_HIGH:Int = CameraGlobals.CAMERA_RES_HIGH;
 
 		//-- PRE COMPUTE --//
-		private static inline var fov:Float = CameraGlobals.CAMERA_FOV* MATH.ppDeg2Rad;
+		private static inline var fov:Float = CameraGlobals.CAMERA_FOV * MATH.ppDeg2Rad;
+		private static inline var BUFFER_BYTES:Int = CAMERA_WIDE * CAMERA_HIGH * 4;
 		private var eyeDistance:Float;
 		private var subRayAngle:Float;
 		private var p_center:Float;
@@ -55,6 +59,9 @@ class AndreRaycaster extends BitmapData
 		private static var sin:Vector<Float> = MATH.instance.sinTable;
 		private static var cos:Vector<Float> = MATH.instance.cosTable;
 		private static var tan:Vector<Float> = MATH.instance.tanTable;
+		
+		
+		public var bitmapMemory:ByteArray;
 		
 
 		
@@ -71,10 +78,17 @@ class AndreRaycaster extends BitmapData
 		}
 		
 	
-		public function new(  ) 
+	public function new() 
 	{
-		super(CAMERA_WIDE, CAMERA_HIGH, false, 0);	
-		x = 0; y = 0; z = 0; angle = 0; roll = 0;
+		super(CAMERA_WIDE, CAMERA_HIGH, false, 0);
+		bitmapMemory = new ByteArray();
+		bitmapMemory.endian = Endian.LITTLE_ENDIAN;
+		bitmapMemory.length = BUFFER_BYTES;
+		Memory.select(bitmapMemory);
+	}
+	
+	private inline function setPixelMem(xVal:Int, yVal:Int, color:UInt):Void {
+		Memory.setI32( ( yVal * CAMERA_WIDE + xVal ) << 2, color);
 	}
 	
 	
@@ -109,7 +123,11 @@ class AndreRaycaster extends BitmapData
 	
 
 	public function render():Void {
-
+		
+		ApplicationDomain.currentDomain.domainMemory.position = 0;
+		lock();
+		
+		
 		
 		//-- LOCAL VARIABLES --//
 		var rx: Int = WorldGlobals.DIVGRID(x);
@@ -195,7 +213,7 @@ class AndreRaycaster extends BitmapData
 			{
 				while( ry < WorldGlobals.MAP_TILES_Y && rx > -1 && rx < WorldGlobals.MAP_TILES_X )
 				{
-			++ry;
+				++ry;
 			
 			ay = WorldGlobals.MULGRID(ry); 
 			ax = x + ( ay - y ) / tn;
@@ -295,7 +313,8 @@ class AndreRaycaster extends BitmapData
 				
 				color = ifloor.getPixel( Std.int( x + cs * distance ) & 63, Std.int( y + sn * distance ) & 63 );
 				
-				setPixel( sx, sy, color );
+				
+				setPixelMem( sx, sy, color );
 			}
 
 			while( --sy > c0 )
@@ -305,7 +324,7 @@ class AndreRaycaster extends BitmapData
 				//-- BLOCKS --//
 				color = iwall.getPixel( Std.int(offset), Std.int(( sy - c0 ) / ht) );
 				
-				setPixel( sx, sy, color );
+				setPixelMem( sx, sy, color );
 			}
 			
 			while( --sy > -1 )
@@ -317,15 +336,18 @@ class AndreRaycaster extends BitmapData
 				
 				color = iceil.getPixel( Std.int( x + cs * distance ) & 63, Std.int( y + sn * distance ) & 63 );
 				
-				setPixel( sx, sy, color );
+				
+				setPixelMem( sx, sy, color );
 			}
 			
 			a -= subRayAngle;
 			
 			if( a < 0 ) a += MATH.pp2PI;
 		}
-
-			
+		
+		
+		setPixels( rect, ApplicationDomain.currentDomain.domainMemory);
+		unlock();	
 	}
 	
 

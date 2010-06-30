@@ -14,7 +14,6 @@
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
     <class path="src" />
-    <class path="cx-src" />
   </classpaths>
   <!-- Build options -->
   <build>
@@ -76,7 +75,7 @@
     <!-- example: <hidden path="..." /> -->
   </hiddenPaths>
   <!-- Executed before build -->
-  <preBuildCommand>D:/CityFly/bin/CaXe.exe -st ax -ct as D:/CityFly/TestCaxe/cx-src D:/CityFly/src</preBuildCommand>
+  <preBuildCommand />
   <!-- Executed after build -->
   <postBuildCommand alwaysRun="False" />
   <!-- Other project options -->

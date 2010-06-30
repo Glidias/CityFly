@@ -22,7 +22,7 @@
 	 * Test to run/mediate Andre's CasualRaycaster which was compiled in Haxe
 	 * @author Glenn Ko
 	 */
-	public class AndreViewTest extends Sprite
+	public class AndreViewAlchemyTest extends Sprite
 	{
 		private var bounds: Rectangle;
 		private const origin: Point = new Point();
@@ -50,16 +50,16 @@
 			engine.angle = _camYaw.value;
 			
 		}
+		public var bmp:Bitmap; //
+		public var engine: AndreRaycasterAlchemy = new AndreRaycasterAlchemy();
 		
-		public var engine: AndreRaycaster = new AndreRaycaster();
-		
-		public var bmp: Bitmap;
+	
 		
 		[Embed(source='/assets/textures.gif')] public var TBmp:Class;
 		
 		
 		
-		public function AndreViewTest() 
+		public function AndreViewAlchemyTest() 
 		{
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);	
 		}
@@ -69,9 +69,9 @@
 			engine.init( new TBmp() );
 			
 			
-			bmp = new Bitmap( engine );
-			bounds = new Rectangle(0,0,engine.width, engine.height);
-	
+			bmp= new Bitmap( engine );
+			bounds = new Rectangle(0,0,bmp.width, bmp.height);
+			
 			addChild( bmp );
 		}
 		
@@ -87,7 +87,7 @@
 			stage.addEventListener( MouseEvent.MOUSE_DOWN, onMouseDown );
 			stage.addEventListener( MouseEvent.MOUSE_UP, onMouseUp );
 			
-			var timer: Timer = new Timer( 1);
+			var timer: Timer = new Timer( 1 );
 			timer.addEventListener( TimerEvent.TIMER, enterFrame );
 			timer.start();
 			//addEventListener(Event.ENTER_FRAME, enterFrame);	// 
@@ -109,7 +109,6 @@
 		{
 			
 			// test engine internally only
-			engine.lock();
 			engine.angle += ( mouseX - stage.stageWidth / 2 ) / 4000;
 			
 			engine.roll += ( mouseY - stage.stageHeight / 2 ) / 32;
@@ -127,8 +126,8 @@
 			engine.z += ( 32 - engine.z ) / 128;
 
 			engine.render();
-		
-			engine.unlock();
+			
+			
 
 		}
 		
