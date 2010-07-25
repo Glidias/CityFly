@@ -25,7 +25,7 @@
 	import org.cityfly.components.spatial.Position3D;
 	import org.cityfly.components.spatial.Rotation;
 	import org.cityfly.entity.camera.Camera3DEntity;
-	import org.cityfly.view.raycasting.WorldGlobals;
+
 	/**
 	 * Test to run/mediate Andre's CasualRaycaster which was compiled in Haxe
 	 * @author Glenn Ko
@@ -137,10 +137,10 @@
 			stage.addEventListener( MouseEvent.MOUSE_DOWN, onMouseDown );
 			stage.addEventListener( MouseEvent.MOUSE_UP, onMouseUp );
 			
-			var timer: Timer = new Timer( 1 );
-			timer.addEventListener( TimerEvent.TIMER, enterFrame );
-			timer.start();
-			//addEventListener(Event.ENTER_FRAME, enterFrame);	// 
+			//var timer: Timer = new Timer( 1 );
+			//timer.addEventListener( TimerEvent.TIMER, enterFrame );
+			//timer.start();
+			addEventListener(Event.ENTER_FRAME, enterFrame);	// 
 			
 			addChild( new FPS() );
 		}

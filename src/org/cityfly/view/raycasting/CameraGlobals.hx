@@ -15,8 +15,8 @@ class CameraGlobals
 	public static inline var MAX_ROLL:Float			= 0.33; //(ppPI/8)
 	public static inline var MAX_PITCH:Float  = 0.33;
 		
-	public static inline var CAMERA_RES_WIDE:Int		= 640;
-	public static inline var CAMERA_RES_HIGH:Int		= 320;
+	public static inline var CAMERA_RES_WIDE:Int		= 512;
+	public static inline var CAMERA_RES_HIGH:Int		= 256;
 	public static inline var TOTAL_MEMORY_SIZE:Int = (CAMERA_RES_WIDE * CAMERA_RES_HIGH) << 2;
 	
 	public static inline var CAMERA_FOV:Float	 = 60; // Field of view - 60 degrees

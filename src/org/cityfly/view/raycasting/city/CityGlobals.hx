@@ -16,6 +16,7 @@ class CityGlobals
 		public static inline var MAP_TILES_Y:Int = 128;		// Number of tiles in Y direction for map (or pixels for bitmapData)
 		public static inline var TOTAL_TILES:Int = MAP_TILES_X * MAP_TILES_Y;
 		public static inline var GRIDSIZE:Int	=	128;			// Size of (square) cell in map
+		public static inline var GRIDSIZE_LOG2:Int = 7;
 		public static inline var GRIDSIZE_HALF:Int = Std.int(GRIDSIZE / 2);
 		
 		// -- Derived settings

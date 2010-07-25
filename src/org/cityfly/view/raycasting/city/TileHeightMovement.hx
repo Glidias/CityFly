@@ -18,7 +18,7 @@ class TileHeightMovement
 	private var cUpRight:Bool;
 	private var cDownRight:Bool;
 	
-	public var cHeight:Float;
+	 static inline var cRadius:Int = 16;
 
 	public function new() 
 	{
@@ -31,21 +31,20 @@ class TileHeightMovement
 		cDownLeft = false;
 		cUpRight = false;
 		cDownRight = false;
-		
-		cHeight = 72 * .5 * .5;  // <- this is a hardcoded temporary and needs a proper setting
+	
 	}
 	
 	inline function getMyCorners(x:Float, y:Float):Void {
 			// find corner points
-			var downY:Int = Std.int((y+cHeight-1)/CityGlobals.GRIDSIZE);
-			var upY:Int = Std.int((y-cHeight)/CityGlobals.GRIDSIZE);
-			var leftX:Int =Std.int((x-cHeight)/CityGlobals.GRIDSIZE);
-			var rightX:Int = Std.int((x+cHeight-1)/CityGlobals.GRIDSIZE);
+			var downY:Int =  CityGlobals.DIVGRID(y + cRadius - 1); 
+			var upY:Int = CityGlobals.DIVGRID( y - cRadius);  
+			var leftX:Int = CityGlobals.DIVGRID(x-cRadius);
+			var rightX:Int = CityGlobals.DIVGRID(x+cRadius-1);
 	
-			cUpLeft =  ( pZ>MapInfoGlobals.getStoreyInfo(leftX, upY)*CityGlobals.GRIDSIZE ) ;
-			cDownLeft =   ( pZ>MapInfoGlobals.getStoreyInfo(leftX, downY)*CityGlobals.GRIDSIZE );
-			cUpRight =   ( pZ>MapInfoGlobals.getStoreyInfo(rightX, upY)*CityGlobals.GRIDSIZE ); 
-			cDownRight =   ( pZ>MapInfoGlobals.getStoreyInfo(rightX, downY)*CityGlobals.GRIDSIZE );
+			cUpLeft =  ( pZ>MapInfoGlobals.getStoreyInfo(leftX, upY) << CityGlobals.GRIDSIZE_LOG2);
+			cDownLeft =   ( pZ>MapInfoGlobals.getStoreyInfo(leftX, downY)<< CityGlobals.GRIDSIZE_LOG2 );
+			cUpRight =   ( pZ>MapInfoGlobals.getStoreyInfo(rightX, upY)<< CityGlobals.GRIDSIZE_LOG2 ); 
+			cDownRight =   ( pZ>MapInfoGlobals.getStoreyInfo(rightX, downY)<< CityGlobals.GRIDSIZE_LOG2 );
 		}
 		
 		public function moveChar(dirx:Float, diry:Float):Void {
@@ -83,7 +82,7 @@ class TileHeightMovement
 				}
 			}
 			
-			pZs= MapInfoGlobals.getStoreyInfo(CityGlobals.DIVGRID(pX), CityGlobals.DIVGRID(pY) );
+			pZs=  CityGlobals.MULGRID( MapInfoGlobals.getStoreyInfo(CityGlobals.DIVGRID(pX), CityGlobals.DIVGRID(pY) ) ) ;
 
 		}
 		

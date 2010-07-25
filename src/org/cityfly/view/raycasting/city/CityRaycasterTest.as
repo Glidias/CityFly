@@ -74,7 +74,11 @@
 		[Embed(source = '/assets/walltextures2.png')]
 		public var BUILDING_MAP_2:Class;
 		
-	
+		private var SW:int = 800;
+		private var SH:int = 600;
+		private static const ANGLE_RATIO:Number = 1 / 4000;
+		private static const ROLL_RATIO:Number = 1 / 32;
+		private static const SUB_ROLL_RATIO:Number = 1 / 50;
 		
 		public function CityRaycasterTest() 
 		{
@@ -126,14 +130,16 @@
 			removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 			bmp.x = ( stage.stageWidth - bmp.width ) / 2;
 			bmp.y = ( stage.stageHeight - bmp.height ) / 2;
+			SW = stage.stageWidth;
+			SH = stage.stageHeight;
 			
 			stage.addEventListener( MouseEvent.MOUSE_DOWN, onMouseDown );
 			stage.addEventListener( MouseEvent.MOUSE_UP, onMouseUp );
 			
-			var timer: Timer = new Timer( 1 );
-			timer.addEventListener( TimerEvent.TIMER, enterFrame );
-			timer.start();
-			//addEventListener(Event.ENTER_FRAME, enterFrame);	// 
+		//	var timer: Timer = new Timer( 1 );
+			//timer.addEventListener( TimerEvent.TIMER, enterFrame );
+			//timer.start();
+			addEventListener(Event.ENTER_FRAME, enterFrame);	// 
 			
 			addChild( new Stats() );
 		}
@@ -151,15 +157,15 @@
 		private function enterFrame( event: Event ): void
 		{
 			// test engine internally only
-			engine.angle += ( mouseX - stage.stageWidth / 2 ) / 4000;
+			engine.angle += ( mouseX - SW * .5 ) * ANGLE_RATIO;
 			
-			engine.roll += ( mouseY - stage.stageHeight / 2 ) / 32;
+			engine.roll += ( mouseY - SH * .5 ) * ROLL_RATIO;
 			engine.roll = engine.roll > 120 ? 120 : engine.roll < -120 ? -120 : engine.roll;
 			
 			if( mouseDown )
 			{
 				movementController.moveChar( Math.cos( engine.angle ) * 6 , Math.sin( engine.angle ) * 6 );
-				movementController.pZ -= engine.roll / 50;
+				movementController.pZ -= engine.roll * SUB_ROLL_RATIO;
 				movementController.pZ =  movementController.pZ < movementController.pZs+16 ? movementController.pZs+16: movementController.pZ;
 			}
 			

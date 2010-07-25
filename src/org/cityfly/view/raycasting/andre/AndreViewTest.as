@@ -87,10 +87,10 @@
 			stage.addEventListener( MouseEvent.MOUSE_DOWN, onMouseDown );
 			stage.addEventListener( MouseEvent.MOUSE_UP, onMouseUp );
 			
-			var timer: Timer = new Timer( 1);
-			timer.addEventListener( TimerEvent.TIMER, enterFrame );
-			timer.start();
-			//addEventListener(Event.ENTER_FRAME, enterFrame);	// 
+			//var timer: Timer = new Timer( 1);
+			//timer.addEventListener( TimerEvent.TIMER, enterFrame );
+			//timer.start();
+			addEventListener(Event.ENTER_FRAME, enterFrame);	// 
 			
 			addChild( new FPS() );
 		}
