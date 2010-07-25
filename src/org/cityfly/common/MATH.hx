@@ -142,33 +142,35 @@ public static inline function ppAbs(val:Float):Float {
 	return val < 0 ? -val : val;
 }
 
-public static inline function ppLog2(input:Int):Int {
-	if((input&(input-1))==0){
-        var a:Int=0;
-        while(input>1){input>>=1; ++a;}
-        return a;
-    }else{
-        return Std.int( Math.log(input) * MATH.LOG2E );
-    }
+
+public static inline function log2(x:Int):Int {
+	var num:Int = x >> 16;
+	var sign:Int = num!=0 ? 0 : 1;
+	var ans:Int = (sign << 4) ^ 24;
+ 
+	num = x >> (ans);
+	sign =  num!=0 ? 0 : 1;
+	ans = (sign << 3) ^ (ans + 4);		
+ 
+	num = x >> (ans);
+	sign =  num!=0 ? 0 : 1;
+	ans = (sign << 2) ^ (ans + 2);
+ 
+	num = x >> (ans);
+	sign =  num!=0 ? 0 : 1;
+	ans = (sign << 1) ^ (ans + 1);		
+ 
+	num = x >> (ans);
+	sign =  num!=0 ? 0 : 1;
+	ans = sign ^ ans;
+ 
+	return ans;
 }
 
-/*
- function floorLog2( n:uint):uint {
-  var pos:int = 0;
-  if (n >= 1<<16) { n >>= 16; pos += 16; }
-  if (n >= 1<< 8) { n >>=  8; pos +=  8; }
-  if (n >= 1<< 4) { n >>=  4; pos +=  4; }
-  if (n >= 1<< 2) { n >>=  2; pos +=  2; }
-  if (n >= 1<< 1) {           pos +=  1; }
-  return ((n == 0) ? (-1) : pos);
-}
-
-function isPower2(x:Number):Boolean {
+public static inline function isPower2(x:Int):Bool {
 	return x != 0 && (x & (x - 1)) == 0; 
 }
 
 
-
-*/
 	
 }

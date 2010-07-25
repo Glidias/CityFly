@@ -13,7 +13,6 @@
 	import org.cityfly.serialization.*;
 	import org.cityfly.serialization.fcss.*;
 
-	import org.cityfly.view.raycasting.hbrc.*;
 	import org.cityfly.view.raycasting.andre.*;
 	import org.cityfly.entity.camera.Camera3DEntity;
 	
@@ -39,12 +38,10 @@
 	
 			
 			// Perform a test below..
-			TestEntitySpawner
-			TestAndreRaycaster
-			TestAndreRaycasterAlchemy
 			//injector.instantiate(TestEntitySpawner).execute();
 			//injector.instantiate(TestAndreRaycaster).execute();
-			injector.instantiate(TestAndreRaycasterAlchemy).execute();
+			//injector.instantiate(TestAndreRaycasterAlchemy).execute();
+			injector.instantiate(TestCityRaycaster).execute();
 				
 			// Or start the main game instead
 			injector.instantiate(GameStartupCommand).execute();

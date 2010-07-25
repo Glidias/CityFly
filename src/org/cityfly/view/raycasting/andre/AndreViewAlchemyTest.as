@@ -2,6 +2,14 @@
 {
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
+	import flash.display.Graphics;
+	import flash.display.GraphicsBitmapFill;
+	import flash.display.GraphicsEndFill;
+	import flash.display.GraphicsPath;
+	import flash.display.GraphicsPathCommand;
+	import flash.display.GraphicsSolidFill;
+	import flash.display.IGraphicsData;
+	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.display.Stage;
 	import flash.display.StageAlign;
@@ -53,15 +61,55 @@
 		public var bmp:Bitmap; //
 		public var engine: AndreRaycasterAlchemy = new AndreRaycasterAlchemy();
 		
-	
+		private var _testDraw:Shape = new Shape();
 		
 		[Embed(source='/assets/textures.gif')] public var TBmp:Class;
 		
-		
+		  
 		
 		public function AndreViewAlchemyTest() 
 		{
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);	
+
+			
+			var commands:Vector.<int> = new Vector.<int>(5, true);
+			commands[0] = GraphicsPathCommand.MOVE_TO;
+			commands[1] = GraphicsPathCommand.LINE_TO;
+			commands[2] = GraphicsPathCommand.LINE_TO;
+			commands[3] = GraphicsPathCommand.LINE_TO;
+			commands[4] = GraphicsPathCommand.LINE_TO;
+
+			 
+			var data:Vector.<Number> = new Vector.<Number>(10, true);
+			data[0] = 10; // x
+			data[1] = 10; // y
+			data[2] = 100;
+			data[3] = 10;
+			data[4] = 100;
+			data[5] = 100;
+			data[6] = 10;
+			data[7] = 100;
+			data[8] = 10;
+			data[9] = 10;
+			
+			var data2:Vector.<Number> = new Vector.<Number>(10, true);
+			data2[0] = 10+ 150; // x
+			data2[1] = 10; // y
+			data2[2] = 100+ 150;
+			data2[3] = 10;
+			data2[4] = 100+ 150;
+			data2[5] = 100;
+			data2[6] = 10+ 150;
+			data2[7] = 100;
+			data2[8] = 10+ 150;
+			data2[9] = 10;
+			
+			var graphData:Vector.<IGraphicsData> =  Vector.<IGraphicsData>([new GraphicsSolidFill(0xFF0000,1), new GraphicsPath(commands, data) , new GraphicsPath( commands, data2)]);
+			
+
+			
+			_testDraw.graphics.drawGraphicsData(graphData);
+
 		}
 		
 		[PostConstruct]
@@ -73,6 +121,8 @@
 			bounds = new Rectangle(0,0,bmp.width, bmp.height);
 			
 			addChild( bmp );
+			addChild(_testDraw);
+			
 		}
 		
 		// STAND ALONE Tests...

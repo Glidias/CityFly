@@ -4,7 +4,9 @@
  * Ported over to Haxe:
  * 
  * Test with Andre Michelle's Casual Raycaster ported over to Haxe, using world/camera 
- * Haxe inline globals from CityFly to allow refactoring + writing to Alchemy memory.
+ * Haxe inline globals from CityFly to allow refactoring + writing to Alchemy memory. This is just
+ * a speed test to see how much faster it is to draw/set pixels from/to memory. However, map data is
+ * still retrieved through legacy bitmapData.getPixel() lookups.
  * 
  * @author Glenn Ko
  */
@@ -75,6 +77,7 @@ class AndreRaycasterAlchemy extends BitmapData
 			ifloor.copyPixels( textures, new Rectangle( 0, 0, 64, 64 ), new Point( 0, 0 ) );
 			iceil.copyPixels( textures, new Rectangle( 64, 0, 64, 64 ), new Point( 0, 0 ) );
 			iwall.copyPixels( textures, new Rectangle( 128, 0, 64, 64 ), new Point( 0, 0 ) );
+
 		}
 		
 	

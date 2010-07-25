@@ -24,8 +24,6 @@ import flash.display.Shape;
 import flash.display.Sprite;
 import flash.Vector;
 
-import org.cityfly.view.raycasting.WorldGlobals;
-import org.cityfly.view.raycasting.CameraGlobals;
 import org.cityfly.common.MATH;
 
 class AndreRaycaster extends BitmapData

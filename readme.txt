@@ -1,9 +1,1 @@
-Experiments with developing a modular game sequel/extension to an old raycasting city engine I did up long ago (a modification to Andre Michelle's raycaster http://lab.andre-michelle.com/raycaster-v3), using the Swft Framework (http://github.com/mikecann/Swft)  with XML serialization and F*CSS styling support for entities and components. (http://wiki.github.com/Glidias/CityFly/xml-serialization-and-fcss-specifications) and Haxe support to run engine-related stuff and settings. (http://www.haxe.org)
-
-Currently nothing much yet but just some coding tryouts with swft, bare bones & organisation. This repo is more to looking into hierachical hash grids, among other stuffs.
-
-Old stuff for viewing at: \bin\oldstuff\
-
-Entity xml templates  and stylings at \bin\xml\entities.xml
-
-Main src files at: \org\cityfly\
+Dev experiments of developing a modular game sequel/extension to an old raycasting tile-based 3D city engine I did up long ago (a modification to Andre Michelle's casual raycaster at http://lab.andre-michelle.com/raycaster-v3). Currently, I'm running this under the Swft Framework (http://github.com/mikecann/Swft) platform under Flash. However, engine-related code and settings are hard-coded and re-assembled under Haxe, using Alchemy opcodes to run the raycaster engine smoothly at higher resolutions in a non-debug Flash version 10 player. This is still a work in progress under optimisation/testing phase across different org.cityfly.view.raycasting branches  (which is the main package zone containing useful concrete stuff). You can easily the whole archive and compare the various engine implementations for yourself. 
