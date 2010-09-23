@@ -5,7 +5,7 @@
 
 package org.cityfly.common;
 
-import flash.Error;
+import flash.errors.Error;
 import flash.Vector;
 import Math;
 

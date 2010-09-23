@@ -1,1 +1,0 @@
-WSAD to move around. Pg up/down to float up and down. Use mouse and hold to look around.

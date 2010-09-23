@@ -5,7 +5,7 @@
 
 package org.cityfly.view.raycasting.city;
 import flash.display.BitmapData;
-import flash.Error;
+import flash.errors.Error;
 import flash.Vector;
 import flash.Memory;
 import org.cityfly.common.MATH;

@@ -13,7 +13,7 @@
 
 package org.cityfly.view.raycasting.andre;
 
-import flash.Error;
+import flash.errors.Error;
 import flash.geom.Point;
 import flash.geom.Rectangle;
 import flash.Memory;

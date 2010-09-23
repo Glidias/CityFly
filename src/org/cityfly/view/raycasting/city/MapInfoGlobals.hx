@@ -4,7 +4,7 @@
  */
 
 package org.cityfly.view.raycasting.city;
-import flash.Error;
+import flash.errors.Error;
 import flash.Memory;
 import flash.Vector;
 import flash.utils.Endian;
